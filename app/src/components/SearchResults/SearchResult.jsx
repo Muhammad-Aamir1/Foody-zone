@@ -1,12 +1,14 @@
 import styled from "styled-components";
 // import { Container } from "../../App";
 import { BASE_URL, Button } from "../../App";
+import PropTypes from "prop-types";
 
 const SearchResult = ({ data }) => {
   return (
     <FoodCardContainer>
       <Container>
         <FoodCards>
+          {/* // eslint-disable-next-line react/prop-types */}
           {data?.map(({ image, name, text, price }) => (
             <FoodCard key={name}>
               <div className="food-image">
@@ -25,6 +27,17 @@ const SearchResult = ({ data }) => {
       </Container>
     </FoodCardContainer>
   );
+};
+
+SearchResult.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      image: PropTypes.string,
+      name: PropTypes.string,
+      text: PropTypes.string,
+      price: PropTypes.number,
+    })
+  ),
 };
 
 export default SearchResult;
